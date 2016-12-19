@@ -1,7 +1,8 @@
 var app = new Moon({
   el: '#app',
   data: {
-    code: $("textarea").value
+    code: $("textarea").value,
+    lang: "JS"
   },
   methods: {
     compile: function() {
