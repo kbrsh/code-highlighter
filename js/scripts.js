@@ -6,10 +6,10 @@ var app = new Moon({
   methods: {
     compile: function() {
       var val = compile(document.getElementById("i").value);
-      app.set("message", val);
+      app.set("code", val);
     }
   }
-})
+});
 
 var compile = function(val) {
   var compiled = val;
