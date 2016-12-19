@@ -41,16 +41,7 @@
   <body class="full-screen center">
     <div id="app">
       <pre m-mask><code m-text="{{code}}"></code></pre>
-      <textarea m-on="input:compile" type="text" id="i"><h1>{{message}}</h1>
-
-<script>
-  var app = new Moon({
-    el: '#app',
-    data: {
-      message: 'Hello Moon'
-    }
-  });
-</script></textarea>
+      <textarea m-on="input:compile" type="text" id="i"></textarea>
 
       <div id="output">
         <pre><code m-html="{{message}}" lang="JS"></code></pre>
