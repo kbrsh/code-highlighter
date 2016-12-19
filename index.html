@@ -11,9 +11,8 @@
 
   <body class="full-screen center">
     <div id="app">
-      <pre m-mask><code>{{code}}</code></pre>
       <textarea m-on="input:compile" type="text" id="i">Enter Code Here</textarea>
-
+      <pre m-mask><code>{{code}}</code></pre>
       <div id="output">
         <pre><code m-html="{{code}}" lang="JS"></code></pre>
       </div>
