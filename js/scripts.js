@@ -22,13 +22,13 @@ var compile = function(val, lang) {
       compiled = compiled.replace(match, '<span class="tag">' + escapedMatch + '</span>');
     });
   }
+  compiled.replace(/(['])(.)*?\1/g, function(match, p1) {
+    compiled = compiled.replace(match, '<span class="string">' + match + '</span>');
+  });
   if(lang === "JS") {
-    compiled.replace(/(['])(.)*?\1/g, function(match, p1) {
-      compiled = compiled.replace(match, '<span class="string">' + match + '</span>');
+    compiled.replace(/(new|for|function|var)/g, function(match, p1) {
+      compiled = compiled.replace(match, '<span class="special">' + match + '</span>');
     });
   }
-  compiled.replace(/(new|for|function|var)/g, function(match, p1) {
-    compiled = compiled.replace(match, '<span class="special">' + match + '</span>');
-  });
   return compiled;
 }
