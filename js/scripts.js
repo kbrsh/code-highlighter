@@ -14,6 +14,7 @@ var app = new Moon({
 
 var compile = function(val, lang) {
   var compiled = val;
+  lang = lang.toUpperCase();
   compiled.replace(/<(.*?)>/g, function(match, p1) {
     escapedMatch = match.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     compiled = compiled.replace(match, '<span class="tag">' + escapedMatch + '</span>');
