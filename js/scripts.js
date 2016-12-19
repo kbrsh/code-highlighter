@@ -12,12 +12,13 @@ var app = new Moon({
   }
 });
 
-var compile = function(val) {
+var compile = function(val, lang) {
   var compiled = val;
   compiled.replace(/<(.*?)>/g, function(match, p1) {
     escapedMatch = match.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     compiled = compiled.replace(match, '<span class="tag">' + escapedMatch + '</span>');
   });
+
   compiled.replace(/(['])(.)*?\1/g, function(match, p1) {
     compiled = compiled.replace(match, '<span class="string">' + match + '</span>');
   });
