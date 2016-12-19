@@ -6,7 +6,7 @@ var app = new Moon({
   },
   methods: {
     compile: function() {
-      var val = compile(document.getElementById("i").value);
+      var val = compile(document.getElementById("i").value, app.get("lang"));
       app.set("code", val);
     }
   }
