@@ -77,7 +77,6 @@
       compiled.replace(/(new|for|function|var)/g, function(match, p1) {
         compiled = compiled.replace(match, '<span class="special">' + match + '</span>');
       });
-      console.log(compiled)
       return compiled;
     }
   </script>
