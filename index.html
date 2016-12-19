@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Code Highlighter</title>
+    <link rel="stylesheet" href="https://rawgit.com/KingPixil/wing/v1.0.0-beta/dist/wing.min.css">
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <style>
+      [m-mask] {
+        display: none;
+      }
+      pre code {
+        background: #FAFAFA;
+        font-family: "Inconsolata";
+        position: relative;
+        min-width: 600px;
+        font-size: 1.5rem;
+      }
+      pre code::after {
+        content: attr(lang);
+        font-size: 1.5rem;
+        color: #CFCFCF;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+      }
+      .tag {
+        color: #00B5E5;
+      }
+      .special {
+        color: #AC2EC5;
+      }
+      .string {
+        color: #02C1A7;
+      }
+    </style>
+  </head>
+
+  <body class="full-screen center">
+    <div id="app">
+      <pre m-mask><code m-text="{{code}}"></code></pre>
+      <textarea m-on="input:compile" type="text" id="i"><h1>{{message}}</h1>
+
+<script>
+  var app = new Moon({
+    el: '#app',
+    data: {
+      message: 'Hello Moon'
+    }
+  });
+</script></textarea>
+
+      <div id="output">
+        <pre><code m-html="{{message}}" lang="JS"></code></pre>
+      </div>
+    </div>
+  </body>
+
+  <script src=".js/lib/moon.min.js"></script>
+
+  <script>
+    var app = new Moon({
+      el: '#app',
+      data: {
+        code: $("textarea").value,
+        intro: "Welcome to the Tutorial <p>It is all about Moon</p>",
+        viewed: true
+      },
+      methods: {
+        compile: function() {
+          var val = compile(document.getElementById("i").value);
+          app.set("message", val);
+        }
+      }
+    })
+
+    var compile = function(val) {
+      var compiled = val;
+      compiled.replace(/<(.*?)>/g, function(match, p1) {
+        escapedMatch = match.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        compiled = compiled.replace(match, '<span class="tag">' + escapedMatch + '</span>');
+      });
+      compiled.replace(/(['])(.)*?\1/g, function(match, p1) {
+        compiled = compiled.replace(match, '<span class="string">' + match + '</span>');
+      });
+      compiled.replace(/(new|for|function|var)/g, function(match, p1) {
+        compiled = compiled.replace(match, '<span class="special">' + match + '</span>');
+      });
+      console.log(compiled)
+      return compiled;
+    }
+  </script>
+</html>
