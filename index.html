@@ -12,9 +12,11 @@
   <body class="full-screen center">
     <div id="app">
       <textarea m-on="input:compile" type="text" id="i">Enter Code Here</textarea>
+      <input type="text" placeholder="Language (JS or HTML)"/>
       <pre m-mask><code>{{code}}</code></pre>
       <div id="output">
-        <pre><code m-html="{{code}}" lang="JS"></code></pre>
+        <h6>Output:</h6>
+        <pre><code m-html="{{code}}" lang="{{lang}}"></code></pre>
       </div>
     </div>
   </body>
