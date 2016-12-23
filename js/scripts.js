@@ -29,7 +29,7 @@ var compile = function(val, lang) {
     compiled.replace(/(new|for|function|var|return)/g, function(match, p1) {
       compiled = compiled.replace(match, '<span class="special">' + match + '</span>');
     });
-    compiled.replace(/(true|false|[0-9]+)/g, function(match, p1) {
+    compiled.replace(/\s(true|false|[0-9]+)\s/g, function(match, p1) {
       compiled = compiled.replace(match, '<span class="user-special">' + match + '</span>');
     });
   }
