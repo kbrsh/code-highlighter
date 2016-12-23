@@ -26,8 +26,11 @@ var compile = function(val, lang) {
     compiled = compiled.replace(match, '<span class="string">' + match + '</span>');
   });
   if(lang === "JS") {
-    compiled.replace(/(new|for|function|var|return|true|false)/g, function(match, p1) {
+    compiled.replace(/(new|for|function|var|return)/g, function(match, p1) {
       compiled = compiled.replace(match, '<span class="special">' + match + '</span>');
+    });
+    compiled.replace(/(true|false)/g, function(match, p1) {
+      compiled = compiled.replace(match, '<span class="user-special">' + match + '</span>');
     });
   }
   return compiled;
